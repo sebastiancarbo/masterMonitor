@@ -1,0 +1,24 @@
+<script type="text/javascript" language="javascript">
+
+function send(type, address)
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "http://45.32.166.226:3000/masterNode/" + type + "/" + address + "/status", false);
+    xhttp.send();
+    document.getElementById("div").innerHTML = xmlhttp.statusText + ":" + xmlhttp.status + "<BR><textarea rows='100' cols='100'>" + xmlhttp.responseText + "</textarea>";
+}
+
+function callbackFunction(xmlhttp) 
+{
+    //alert(xmlhttp.responseXML);
+}
+</script>
+
+<body id='bod'>
+<html>
+<button type="submit" onclick="javascript:send('ARC','ARy5amVfK4ATugx55coV12wtzote1eqPwS')">ARC1</button>
+<div id='div'>
+
+</div>
+</html>
+</body>

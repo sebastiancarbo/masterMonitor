@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Masternodes</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="addTapped($event)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-thumbnail item-start>
+        <img src={{item.imageUrl}}>
+      </ion-thumbnail>
+      <h2>{{item.name}}</h2>
+      <small>{{item.balance}}</small>
+      <div item-right>
+        <ion-chip [color]="item.status == 'ENABLED' ? 'secondary' : 'danger'" style="padding-left: 10px; padding-right: 10px;">
+            {{item.status}}
+        </ion-chip>
+      </div>
+    </button>
+  </ion-list>
+</ion-content>

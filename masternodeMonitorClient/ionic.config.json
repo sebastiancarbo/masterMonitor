@@ -1,0 +1,15 @@
+{
+  "name": "MasterMonitor",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://45.32.166.226:3000"
+    }
+  ]
+}

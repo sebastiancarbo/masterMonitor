@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Add MasterNode</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <form [formGroup]="addMasternodeForm">
+    <ion-item>
+      <ion-label floating>Crytocurrency</ion-label>
+      <ion-select formControlName="cryptocurrency" >
+        <ion-option value="ARC">ARC</ion-option>
+        <ion-option value="CHC">CHC</ion-option>
+        <ion-option value="CRAVE">CRAVE</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Address</ion-label>
+      <ion-input formControlName="address" type="text"></ion-input>
+    </ion-item>
+
+    </form>
+
+  </ion-list>
+  <button ion-button full color="primary" (click)="save()">Add MasterNode</button>
+</ion-content>
