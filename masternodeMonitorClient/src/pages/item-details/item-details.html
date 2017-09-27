@@ -18,16 +18,19 @@
     {{selectedItem.address}}
   </p>
   <h4 text-center *ngIf="selectedItem">
-    IP {{selectedItem.ip}}
+    IP: {{selectedItem.ip}}
   </h4>
   <h4 text-center *ngIf="selectedItem">
-    Balance <b>{{selectedItem.balance}}</b>
+    Balance: <b>{{selectedItem.balance}}</b>
   </h4>
   <h4 text-center *ngIf="selectedItem">
-    <ion-chip [color]="selectedItem.status == 'ENABLED' ? 'secondary' : 'danger'"
+    <ion-chip *ngIf="selectedItem.status"
+              [color]="selectedItem.status == 'ENABLED' ? 'secondary' : 'danger'"
               style="padding-left: 10px; padding-right: 10px; font-size: 2rem;">
       {{selectedItem.status}}
     </ion-chip>
   </h4>
-  <button ion-button full color="primary" (click)="removeAlert()">Remove MasterNode</button>
+  <div text-center>
+    <button ion-button color="primary" (click)="removeAlert()">Remove MasterNode</button>
+  </div>
 </ion-content>

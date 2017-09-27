@@ -16,9 +16,9 @@
     <ion-item>
       <ion-label floating>Crytocurrency</ion-label>
       <ion-select formControlName="cryptocurrency" >
-        <ion-option value="ARC">ARC</ion-option>
+        <!--ion-option value="ARC">ARC</ion-option-->
         <ion-option value="CHC">CHC</ion-option>
-        <ion-option value="CRAVE">CRAVE</ion-option>
+        <!--ion-option-- value="CRAVE">CRAVE</ion-option-->
       </ion-select>
     </ion-item>
 
@@ -35,5 +35,7 @@
     </form>
 
   </ion-list>
-  <button ion-button full color="primary" (click)="save()">Add MasterNode</button>
+  <div text-center>
+    <button ion-button color="primary" (click)="save()">Add MasterNode</button>
+  </div>
 </ion-content>

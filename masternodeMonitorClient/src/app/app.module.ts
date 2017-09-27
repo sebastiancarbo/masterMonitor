@@ -15,6 +15,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MonitoringServiceProvider } from '../providers/monitoring-service/monitoring-service';
 import { HttpModule } from '@angular/http';
 
+import { Clipboard } from '@ionic-native/clipboard';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -41,6 +43,7 @@ import { HttpModule } from '@angular/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Clipboard,
     MonitoringServiceProvider
   ]
 })

@@ -43,7 +43,10 @@ export class ListPage {
     this.monitoringServiceProvider.loadBalance(value.cryptocurrency, value.address)
       .then(data => {
         this.zone.run(() => {
-          value.balance = data['balance'];
+          if (!isNaN(data['balance']))
+            value.balance = data['balance'];
+          else
+            value.balance = 0.0;
         });
       });
 
