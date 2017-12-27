@@ -10,6 +10,10 @@
     {
       "path": "/api",
       "proxyUrl": "http://45.32.166.226:3000"
+    },
+    {
+      "path": "/coinmarketcapApi",
+      "proxyUrl": "https://api.coinmarketcap.com"
     }
   ]
 }

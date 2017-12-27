@@ -3,7 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { AddMasterNodePage } from '../add-masternode/add-masternode';
 import { Storage } from '@ionic/storage';
+//import { LocalNotifications } from '@ionic-native/local-notifications';
 import {MonitoringServiceProvider} from '../../providers/monitoring-service/monitoring-service';
+//import { BackgroundMode } from '@ionic-native/background-mode';
 
 @Component({
   selector: 'page-list',
@@ -15,10 +17,32 @@ export class ListPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private storage: Storage, public monitoringServiceProvider: MonitoringServiceProvider,
-              public zone: NgZone) {
+              public zone: NgZone
+              //public localNotifications: LocalNotifications,
+              //public backgroundMode: BackgroundMode
+              ) {
+
+    console.log('ListPage created.')
 
     this.addItem = this.addItem.bind(this);
     this.refresh = this.refresh.bind(this);
+    // this.backgroundMode.enable();
+    //
+    // this.backgroundMode.on('activate').subscribe(()=>{
+    //   // this.localNotifications.schedule({
+    //   //   id: new Date().getTime(),
+    //   //   title: 'Activate',
+    //   //   text: 'backgroundMode activated'
+    //   // });
+    // });
+
+    // this.backgroundMode.on('deactivate').subscribe(()=>{
+    //   // this.localNotifications.schedule({
+    //   //   id: new Date().getTime(),
+    //   //   title: 'Deactivate',
+    //   //   text: 'backgroundMode deactivate'
+    //   // });
+    // });
   }
 
   ionViewWillEnter () {
@@ -37,16 +61,21 @@ export class ListPage {
         this.zone.run(() => {
           value.status = data['status'];
           value.ip = data['ip'];
+
+          this.storage.set(value.cryptocurrency + '_' + value.address, value);
         });
       });
 
     this.monitoringServiceProvider.loadBalance(value.cryptocurrency, value.address)
       .then(data => {
         this.zone.run(() => {
+
           if (!isNaN(data['balance']))
             value.balance = data['balance'];
           else
             value.balance = 0.0;
+
+          this.storage.set(value.cryptocurrency + '_' + value.address, value);
         });
       });
 
@@ -70,5 +99,10 @@ export class ListPage {
   refresh() {
     this.items = [];
     this.storage.forEach(this.addItem);
+    // this.localNotifications.schedule({
+    //   id: new Date().getTime(),
+    //   title: 'Refresh',
+    //   text: 'Refresh executed by the user'
+    // });
   }
 }

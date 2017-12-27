@@ -21,7 +21,10 @@ export class MonitoringServiceProvider {
     return new Promise(resolve => {
       let url;
       if (this.platform.is('android'))
-        url = 'http://45.32.166.226:3000/masterNode/' + cryptocurrency +'/'+ address +'/status';
+        if (cryptocurrency === 'XMCC' || cryptocurrency === 'ARC')
+          url = 'http://45.63.78.18:3000/masterNode/' + cryptocurrency +'/'+ address +'/status';
+        else
+          url = 'http://45.32.166.226:3000/masterNode/' + cryptocurrency +'/'+ address +'/status';
       else
         url = '/api/masterNode/' + cryptocurrency +'/'+ address +'/status';
 
@@ -38,9 +41,51 @@ export class MonitoringServiceProvider {
     return new Promise(resolve => {
       let url;
       if (this.platform.is('android'))
-        url = 'http://45.32.166.226:3000/masterNode/' + cryptocurrency +'/'+ address +'/balance';
+        if (cryptocurrency === 'XMCC' || cryptocurrency === 'ARC')
+          url = 'http://45.63.78.18:3000/masterNode/' + cryptocurrency +'/'+ address +'/balance';
+        else
+          url = 'http://45.32.166.226:3000/masterNode/' + cryptocurrency +'/'+ address +'/balance';
       else
         url = '/api/masterNode/' + cryptocurrency +'/'+ address +'/balance';
+
+      this.http.get(url)
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  getTicker(coinName) {
+
+    return new Promise(resolve => {
+      let url;
+      if (this.platform.is('android'))
+        url = 'https://api.coinmarketcap.com/v1/ticker/';
+      else
+        url = '/coinmarketcapApi/v1/ticker/';
+
+      url = url + coinName;
+
+      this.http.get(url)
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
+  getMasternode(cryptocurrency) {
+
+    return new Promise(resolve => {
+      let url;
+      if (this.platform.is('android'))
+        if (cryptocurrency === 'XMCC' || cryptocurrency === 'ARC')
+          url = 'http://45.63.78.18:3000/masterNode/' + cryptocurrency;
+        else
+          url = 'http://45.32.166.226:3000/masterNode/' + cryptocurrency;
+      else
+        url = '/api/masterNode/' + cryptocurrency;
 
       this.http.get(url)
         .map(res => res.json())

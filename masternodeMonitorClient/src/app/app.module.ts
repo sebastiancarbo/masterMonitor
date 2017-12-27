@@ -7,6 +7,7 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { AddMasterNodePage } from '../pages/add-masternode/add-masternode';
+import { StatisticsPage } from '../pages/statistics/statistics';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,6 +17,8 @@ import { MonitoringServiceProvider } from '../providers/monitoring-service/monit
 import { HttpModule } from '@angular/http';
 
 import { Clipboard } from '@ionic-native/clipboard';
+//import { LocalNotifications } from '@ionic-native/local-notifications';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { Clipboard } from '@ionic-native/clipboard';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    AddMasterNodePage
+    AddMasterNodePage,
+    StatisticsPage,
   ],
   imports: [
     BrowserModule,
@@ -37,13 +41,16 @@ import { Clipboard } from '@ionic-native/clipboard';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    AddMasterNodePage
+    AddMasterNodePage,
+    StatisticsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Clipboard,
+    //LocalNotifications,
+    BackgroundMode,
     MonitoringServiceProvider
   ]
 })

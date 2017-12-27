@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Statistics</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let coin of coins">
+      <ion-thumbnail item-start>
+        <img src={{coin.imageUrl}}>
+      </ion-thumbnail>
+      <h1>{{coin.ticker && coin.ticker.name}} <span>{{coin.symbol}}</span></h1>
+      <h2>Total Master Nodes: {{coin.masternodes && coin.masternodes.count}}</h2>
+      <h3>${{coin.ticker && coin.ticker.price_usd}}
+        <span style="color: green;" *ngIf="coin.ticker && coin.ticker.percent_change_24h >= 0">({{coin.ticker.percent_change_24h}})</span>
+        <span style="color: red;" *ngIf="coin.ticker && coin.ticker.percent_change_24h < 0">({{coin.ticker.percent_change_24h}})</span>
+      </h3>
+      <h3>{{coin.ticker && coin.ticker.price_btc}} BTC</h3>
+      <h3>Rank: {{coin.ticker && coin.ticker.rank}}</h3>
+    </button>
+  </ion-list>
+</ion-content>

@@ -7,7 +7,7 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import {StatisticsPage} from "../pages/statistics/statistics";
 
 @Component({
   templateUrl: 'app.html'
@@ -30,6 +30,7 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Masternodes', component: ListPage },
+      { title: 'Statistics', component: StatisticsPage },
       { title: 'About', component: HelloIonicPage }
     ];
   }
